@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>InProgress</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="userIDFlag == 'shkp' ">
+    <h2> order progress for shkp</h2>
+  </div>
+
+  <div *ngIf="userIDFlag == 'indus' ">
+    <ion-card>
+      <div *ngFor=" let details of orderInProgress ">
+        <div class="parent" *ngIf = " details.orderstatus == 'inProgress' ">
+          <div class="elements">
+            <p>OrderID</p>
+            <p>Retailers</p>
+            <p>Logistics </p>
+            <p>Requested Amount</p>
+          </div>
+          <div class="elements">
+            <p>{{details.orderid}}</p>
+            <p>{{details.retailername}}</p>
+            <p>{{details.logisticsname}}</p>
+            <p>{{details.requestedplastic}}</p>
+          </div>
+          <ion-button size="small" fill="outline" routerLink="/industries-landing/shkp-logistics">Track
+          </ion-button>
+        </div>
+      </div>
+      
+    </ion-card>
+  </div>
+
+
+</ion-content>

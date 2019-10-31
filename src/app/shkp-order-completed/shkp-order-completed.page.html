@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      <ion-title>Completed</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="username == 'shkp' ">
+        <h2> order completed for shkp</h2>
+      </div>
+      <div *ngIf="username == 'indus' ">
+          <h2> order completed for Industries</h2>
+        </div>
+</ion-content>

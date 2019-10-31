@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Logistics</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf=" userIDFlag == 'shkp' ">
+    <h2> Logistics for shkp</h2>
+  </div>
+  <div *ngIf=" userIDFlag == 'indus' ">
+    <div *ngFor="let detail of Logistics" class="parent">
+      <div class="elements">
+        <p>LogisticsID</p>
+        <p>Name</p>
+        <p>Ph No </p>
+        <p>PickupLocation</p>
+      </div>
+      <div class="elements">
+        <p>{{detail.logistics_id}}</p>
+        <p>{{detail.logistics_name}}</p>
+        <p>{{detail.logistics_phone}} </p>
+        <p>{{detail.pickup_location}}</p>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

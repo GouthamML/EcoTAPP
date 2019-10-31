@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pickups</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div *ngFor = "let shopdetail of shopkeeperArray">
+  <ion-card>
+
+  <ion-card-content>
+    
+      <div>{{shopdetail.retailername}}</div>
+      <div>{{shopdetail.phone}}</div>
+      <div>{{shopdetail.address}}</div>
+  </ion-card-content>
+</ion-card>
+</div>
+</ion-content>

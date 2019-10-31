@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Locate Stores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let r of retailers">
+    <ion-card>
+      <ion-item>
+        <ion-icon name="pin" slot="start"></ion-icon>
+        <ion-label>{{ r.retailername }}</ion-label>
+        <ion-button fill="outline" slot="end">Direction</ion-button>
+      </ion-item>
+
+      <ion-card-content>
+        {{ r.address }}
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

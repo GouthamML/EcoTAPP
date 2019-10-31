@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Drops</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div *ngFor=" let ind of shopkeeperArray">
+    <ion-card>
+
+      <ion-card-content>
+        <div>{{ind.industry_name}}</div>
+        <div>{{ind.industry_phone}}</div>
+        <div>{{ind.industry_address}}</div>
+      </ion-card-content>
+    </ion-card>
+    <ion-button fill="block" size="small" slot="end" (click)="dropOrder()">Drop Package</ion-button>
+  </div>
+  
+</ion-content>
