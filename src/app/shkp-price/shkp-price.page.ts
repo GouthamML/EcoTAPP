@@ -33,26 +33,103 @@ export class ShkpPricePage implements OnInit {
   jsondata: any;
   API_inv_URL: any;
   qotesValue: any;
+  res_data:any;
+  argsArray:any;
+  res_history_data =[];
+  username:any;
+  userIDFlag:any;
   constructor(private http: HttpClient) {
     this.channel = 'default';
     this.chaincode = 'plastic16';
     this.chaincodeVer = 'v1';
 
-    var argsArray = [localStorage.getItem('username')];
+    this.username =  localStorage.getItem('username');
+    if(/^shkp/.test(this.username)){
+      this.userIDFlag = "shkp";
+      // this.forShopKeepers()
+    }
+    else if(/^indus/.test(this.username)){
+      this.userIDFlag = "indus";
+      console.log("calling insudrties");
+      this.forIndustries();
+   }
+
+     this.argsArray = [localStorage.getItem('username')];
     var shkpHistory = {
       'channel': this.channel,
       'chaincode': this.chaincode,
       'method': 'read',
-      'args': argsArray,
+      'args': this.argsArray,
       'chaincodeVer': this.chaincodeVer
     }
     
       http.post(blockchainURLQuery, shkpHistory, httpOptionsBC).subscribe( res => {
         console.log("History");
         console.log(res);
+        this.res_data= JSON.parse(res['result']['payload']);
+        console.log(this.res_data['price']);
       })
   }
+
+  forIndustries(){
+    this.argsArray = [localStorage.getItem('username')];
+
+    var indHistory = {
+      'channel': this.channel,
+      'chaincode': this.chaincode,
+      'method': 'read',
+      'args': this.argsArray,
+      'chaincodeVer': this.chaincodeVer
+    }
+    this.http.post(blockchainURLQuery, indHistory, httpOptionsBC).subscribe( res => {
+      console.log("History");
+      console.log(res);
+      this.res_data= JSON.parse(res['result']['payload']);
+      console.log(this.res_data['price']);
+    })
+  }
   
+  historyOnClick(){
+    var shkpHistoryByid ={
+      'channel': this.channel,
+      'chaincode': this.chaincode,
+      'method': 'history',
+      'args': this.argsArray,
+      'chaincodeVer': this.chaincodeVer
+    }
+    console.log('shkpHistoryByid\n');
+    console.log(shkpHistoryByid);
+    this.http.post(blockchainURLQuery,shkpHistoryByid, httpOptionsBC).subscribe( res => {
+      console.log("History");
+      
+
+      console.log(res);
+      this.res_history_data= JSON.parse(res['result']['payload']);
+      console.log(this.res_history_data);
+      
+    })
+  }
+
+  historyOnClickforIndustry() {
+    this.argsArray = [localStorage.getItem('username')];
+    var indusHistoryByid ={
+      'channel': this.channel,
+      'chaincode': this.chaincode,
+      'method': 'history',
+      'args': this.argsArray,
+      'chaincodeVer': this.chaincodeVer
+    }
+
+    this.http.post(blockchainURLQuery,indusHistoryByid, httpOptionsBC).subscribe( res => {
+      console.log("History");
+      
+
+      console.log(res);
+      this.res_history_data= JSON.parse(res['result']['payload']);
+      console.log(this.res_history_data);
+      
+    })
+  }
 
   ngOnInit() {
   }

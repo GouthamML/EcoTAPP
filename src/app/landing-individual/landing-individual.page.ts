@@ -77,6 +77,7 @@ export class LandingIndividualPage implements OnInit {
       console.log(redeemBodyBC);
       console.log(result);
       this.redeemAmount = JSON.parse(result['result']['payload'])['reward'];
+      localStorage.setItem('reward', this.redeemAmount);
     })
   }
 

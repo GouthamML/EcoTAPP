@@ -1,1 +1,42 @@
+.backgroundLogin{
+    position: relative;
+    .blackImage {
+        max-width: 100%;
+    width: 100vw;
+    height: 100vh;
+    border: 0;
+    z-index: 0;
+    opacity: 0.7;
+    position: absolute;
+    }
+}
 
+    .loginPage{
+        background-image: url("/assets/plastic.jpg");
+        background-size: cover;
+        height: 100vh;
+        // text-align: center;
+    }
+
+    .fields{
+        position: absolute;
+    width: 90%;
+    left: 5%;
+    padding-top: 10em;
+    bottom: -41.5em;
+    border-bottom: 10%;
+        ion-item {
+            padding-left: 0 !important;
+        }
+    }
+    .loginButton{
+        font-size: 1.2em;
+        height: 65px;
+    }
+    .logo{
+        position: absolute;
+    z-index: 2;
+    width: 84%;
+    margin-left: 8%;
+    margin-top: 15%;
+    }

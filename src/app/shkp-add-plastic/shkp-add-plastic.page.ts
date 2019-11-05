@@ -11,7 +11,8 @@ const httpOptions = {
 const httpOptionsBC = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': 'Basic cmF2aS5zcmVlLmthc2h5YXAua29tcGVsbGFAb3JhY2xlLmNvbTpPcmFjbGVAMTIzNDU='
+    'Authorization': 'Basic cmF2aS5zcmVlLmthc2h5YXAua29tcGVsbGFAb3JhY2xlLmNvbTpPcmFjbGVAMTIzNDU=',
+    'Access-Control-Allow-Origin': '*'
   })
 };
 var blockchainURLinvoke = "https://9BFF3D41CB854A9087FABF6F8A445CA2.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation";
@@ -33,13 +34,20 @@ export class ShkpAddPlasticPage implements OnInit {
   qotesValue:any;
   data = {};
   addPlasticURL: string;
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, public toastController: ToastController) { 
     this.channel = 'default';
     this.chaincode = 'plastic16';
     this.chaincodeVer = 'v1';
   }
 
 
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Request was updated successfully!',
+      duration: 2000
+    });
+    toast.present();
+  }
 
   addPlastic() {
 
@@ -71,6 +79,7 @@ export class ShkpAddPlasticPage implements OnInit {
         'args': argsArray,
         'chaincodeVer': 'v1'
       }
+      this.presentToast()
 
       this.http.post(blockchainURLinvoke, addplasticbcPayload, httpOptionsBC).subscribe( resAddPlastic => {
         console.log("Added");

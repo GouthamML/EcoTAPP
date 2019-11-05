@@ -10,9 +10,28 @@
 <ion-content>
 
   <div *ngIf=" userIDFlag == 'shkp' ">
-    <h2> Logistics for shkp</h2>
+    <ion-card style="padding-left: 7%;">
+      <div *ngFor="let detail of Logistics" class="parent">
+          <div class="elements">
+            <p>LogisticsID</p>
+            <p>Name</p>
+            <p>Ph No </p>
+            <p>PickupLocation</p>
+          </div>
+          <div class="elements">
+            <p>{{detail.logistics_id}}</p>
+            <p>{{detail.logistics_name}}</p>
+            <p>{{detail.logistics_phone}} </p>
+            <p>{{detail.pickup_location}}</p>
+          </div>
+        </div>
+      </ion-card>
+      <ion-button expand="block" color="success"><ion-icon name="call"></ion-icon> Call</ion-button>
   </div>
+
+
   <div *ngIf=" userIDFlag == 'indus' ">
+    <ion-card>
     <div *ngFor="let detail of Logistics" class="parent">
       <div class="elements">
         <p>LogisticsID</p>
@@ -27,6 +46,8 @@
         <p>{{detail.pickup_location}}</p>
       </div>
     </div>
+  </ion-card>
+  <ion-button expand="block" color="success"><ion-icon name="call"></ion-icon> Call</ion-button>
   </div>
 
 </ion-content>

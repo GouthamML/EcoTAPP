@@ -8,19 +8,19 @@
 </ion-header>
 
 <ion-content>
-    <ion-card>
+    <ion-card style="margin-top: 50%;padding-left: 7%;">
         <ion-card-header>
           <!-- <ion-card-title>Add</ion-card-title> -->
         </ion-card-header>
       
         <ion-card-content>
           <!-- Amount -->
-          <ion-label position="fixed">Amount</ion-label>
+          <ion-label style="font-size: 1.5em;" position="fixed">Amount</ion-label>
             <ion-input placeholder="Amount of plastic" [(ngModel)]="data.amount"></ion-input>
             
-            <ion-label position="fixed">User ID</ion-label>
+            <ion-label style="font-size: 1.5em;" position="fixed">User ID</ion-label>
             <ion-input placeholder="Enter User ID" [(ngModel)]="data.userID"></ion-input>
-            <ion-button (click)="addPlastic()" expand="block">ADD</ion-button>
+            <ion-button style="height: 52px;" (click)="addPlastic()" expand="block">ADD</ion-button>
         </ion-card-content>
       </ion-card>
 </ion-content>

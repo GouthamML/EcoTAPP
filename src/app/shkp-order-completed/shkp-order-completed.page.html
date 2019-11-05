@@ -1,17 +1,90 @@
 <ion-header>
-    <ion-toolbar color="primary">
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-      <ion-title>Completed</ion-title>
-    </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Completed</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div *ngIf="username == 'shkp' ">
-        <h2> order completed for shkp</h2>
-      </div>
-      <div *ngIf="username == 'indus' ">
-          <h2> order completed for Industries</h2>
+  <div *ngIf="userIDFlag == 'shkp' ">
+    <ion-card style="padding-left: 7%;">
+      <div class="parent">
+        <div class="elements">
+          <p>OrderID</p>
+
+          <p>Logistics </p>
+          <p>Requested Amount</p>
+          <p>Retailers</p>
         </div>
+        <div class="elements">
+          <p>7892</p>
+          <p>Logistics Three</p>
+          <p>80</p>
+          <p>{{username}}</p>
+        </div>
+      </div>
+    </ion-card>
+    <ion-card style="padding-left: 7%;">
+        <div class="parent">
+          <div class="elements">
+            <p>OrderID</p>
+  
+            <p>Logistics </p>
+            <p>Requested Amount</p>
+            <p>Retailers</p>
+          </div>
+          <div class="elements">
+            <p>3543</p>
+            <p>Logistics Two</p>
+            <p>95</p>
+            <p>{{username}}</p>
+          </div>
+        </div>
+      </ion-card>
+      <ion-card style="padding-left: 7%;">
+          <div class="parent">
+            <div class="elements">
+              <p>OrderID</p>
+    
+              <p>Logistics </p>
+              <p>Requested Amount</p>
+              <p>Retailers</p>
+            </div>
+            <div class="elements">
+              <p>2642</p>
+              <p>Logistics one</p>
+              <p>60</p>
+              <p>{{username}}</p>
+            </div>
+          </div>
+        </ion-card>
+
+  </div>
+
+
+
+  <div *ngIf="userIDFlag == 'indus' ">
+    <div *ngFor="let detail of shopkeeperArray ">
+      <ion-card style="padding-left: 7%;">
+        <div class="parent" *ngIf=" arrayCheckFlag == 'industries' ">
+          <div class="elements">
+            <p>OrderID</p>
+
+            <p>Logistics </p>
+            <p>Requested Amount</p>
+            <p>Retailers</p>
+          </div>
+          <div class="elements">
+            <p>{{detail.orderid}}</p>
+            <p>{{detail.logisticsname}}</p>
+            <p>{{detail.requestedplastic}}</p>
+            <p>{{detail.retailername}}</p>
+          </div>
+
+        </div>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>

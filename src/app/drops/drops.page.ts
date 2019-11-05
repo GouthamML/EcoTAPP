@@ -5,6 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { getLocalePluralCase } from '@angular/common';
 import { resolve } from 'url';
 
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -20,7 +21,7 @@ var orderData = JSON.parse(localStorage.getItem('logisticsDetails'));
 })
 export class DropsPage implements OnInit {
   shopkeeperArray:any;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public toastController: ToastController) {
 
     var shopKeeperDetails = {
       name:null,
@@ -40,13 +41,21 @@ export class DropsPage implements OnInit {
     }
     )
    }
+   async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Request was updated successfully!',
+      duration: 2000
+    });
+    toast.present();
+  }
 
    dropOrder(){
      var payload = {
-       orderid: orderData['items'][0]['orderid'],
+       orderid: localStorage.getItem('orderid'),
        logistics_id: localStorage.getItem('username')
      }
      console.log(payload);
+     this.presentToast();
     this.http.put(completeOrder, payload, httpOptions).subscribe( res => {
       console.log("updated order table");
     })

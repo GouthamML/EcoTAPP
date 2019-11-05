@@ -8,14 +8,46 @@
 </ion-header>
 
 <ion-content>
-    <ion-card>
+    <ion-card style="padding-left: 7%;">
         <ion-card-header>
-          <ion-card-title>Reward</ion-card-title>
+          <ion-card-title style="font-size: 1.1em;">Reward</ion-card-title>
         </ion-card-header>
       
-        <ion-card-content>
+        <ion-card-content style="font-size:2em">
           {{redeem}}
         </ion-card-content>
       </ion-card>
-      <ion-button color="light">History</ion-button>
+      <ion-button color="light" (click)="historyIndi()">History</ion-button>
+      <div style="    display: flex;flex-direction: column;">
+      <div *ngFor="let res of res_history_data" style="word-wrap: break-word;">
+          <ion-card>
+  
+            <ion-card-content>
+              <ion-grid class="nopadding">
+                <ion-row>
+                  <ion-col col-md-6>
+                    Price:
+                  </ion-col>
+                  <ion-col col-md-6>{{res.Value.price}}
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-md-6>
+                    Amount:
+                  </ion-col>
+                  <ion-col col-md-6>{{res.Value.amt}}
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-md-6>
+                    Timestamp:
+                  </ion-col>
+                  <ion-col col-md-6>{{res.Timestamp}}
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </div>
+        </div>
 </ion-content>

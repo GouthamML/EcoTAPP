@@ -21,7 +21,8 @@ const routes: Routes = [
       { path: 'industries-profile', loadChildren: '../industries-profile/industries-profile.module#IndustriesProfilePageModule' },
       { path: 'shkp-logistics', loadChildren: '../shkp-logistics/shkp-logistics.module#ShkpLogisticsPageModule' },
       { path: 'shkp-order-in-progress', loadChildren: '../shkp-order-in-progress/shkp-order-in-progress.module#ShkpOrderInProgressPageModule' },
-      { path: 'shkp-order-completed', loadChildren: '../shkp-order-completed/shkp-order-completed.module#ShkpOrderCompletedPageModule' }
+      { path: 'shkp-order-completed', loadChildren: '../shkp-order-completed/shkp-order-completed.module#ShkpOrderCompletedPageModule' },
+      { path: 'shkp-price', loadChildren: '../shkp-price/shkp-price.module#ShkpPricePageModule' }
     ]
   }
 ];

@@ -9,6 +9,7 @@ const httpOptions = {
 };
 
 var getLogistics = "https://mbhkhyle9gdcpvt-ecot.adb.us-ashburn-1.oraclecloudapps.com/ords/ecot/select/getLogistic/";
+var getRetailer = "https://mbhkhyle9gdcpvt-ecot.adb.us-ashburn-1.oraclecloudapps.com/ords/ecot/select/getReatiler/";
 
 @Component({
   selector: 'app-shkp-logistics',
@@ -25,6 +26,7 @@ export class ShkpLogisticsPage implements OnInit {
     
     if(/^shkp/.test(this.username)){
       this.userIDFlag = "shkp";
+      this.forShopkeepers();
     }
     else if(/^indus/.test(this.username)){
       this.userIDFlag = "indus";
@@ -32,6 +34,19 @@ export class ShkpLogisticsPage implements OnInit {
   }
 console.log(this.userIDFlag);
 
+  }
+  forShopkeepers(){
+    this.http.get(getLogistics + localStorage.getItem('logistic_id')).subscribe( logiticsDetails => {
+      // this.Logistics = logiticsDetails['items'];
+      var self = logiticsDetails['items'];
+      this.http.get(getRetailer + localStorage.getItem('username')).subscribe ( retailers => {
+        self[0]['pickup_location'] =  retailers['items'][0]['address'];
+        console.log(self);
+        this.Logistics = self;
+      })
+
+      
+    })
   }
 
   forIndustries(){

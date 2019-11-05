@@ -28,6 +28,7 @@ export class HomePage {
       this.router.navigateByUrl('/logistics-lading/pickups');
     }
     this.credentials['username'] = "";
+    this.credentials['password'] = "";
   }
 
 }

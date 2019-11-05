@@ -35,6 +35,11 @@ export class IndustriesLandingPage implements OnInit {
       ]
     },
     {
+      title: 'Price',
+      url: '/industries-landing/shkp-price',
+      icon: ''
+    },
+    {
       title: 'Logout',
       url: '/home',
       icon: 'power'

@@ -4,6 +4,7 @@ import { ModalPagePage } from '../modal-page/modal-page.page'
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -34,14 +35,26 @@ export class IndustriesRequestPage implements OnInit {
   API_URL: any;
   jsondata: any;
   API_inv_URL: any;
-  qotesValue:any;
+  quotesValue:any;
 
   data = {}
-  constructor(public modalController: ModalController, private http: HttpClient, public toastController: ToastController) { 
+  constructor(public modalController: ModalController, private http: HttpClient, public toastController: ToastController, public loadingController: LoadingController) { 
     this.channel = 'default';
     this.chaincode = 'plastic16';
     this.chaincodeVer = 'v1';
   }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Creating Order...',
+      duration: 5000
+    });
+    await loading.present();
+    const { role, data } = await loading.onDidDismiss();
+    
+
+    console.log('Loading dismissed!');
+  } 
 
   async ecotMainFunction() {
     var readRetailer = "https://mbhkhyle9gdcpvt-ecot.adb.us-ashburn-1.oraclecloudapps.com/ords/ecot/select/retailerGetData";
@@ -119,6 +132,9 @@ export class IndustriesRequestPage implements OnInit {
         retailers_id: JSON.stringify(plastics.ids),
         logistics_id: null
       }
+      
+      //setting ORDERID in localstorage for shopkeeper order reference
+      localStorage.setItem('orderid', orderCreatePayload.orderID);
 
       this.http.get(getIndustry + localStorage.getItem('username')).subscribe(idustryResult => {
         console.log("industry\n"+idustryResult['items'][0]['industry_name']);
@@ -131,6 +147,7 @@ export class IndustriesRequestPage implements OnInit {
           orderCreatePayload.logisticsName = logistics['items'][randomLogNumber]['logistics_name'];
           orderCreatePayload.logistics_id = logistics['items'][randomLogNumber]['logistics_id'];
           console.log("logisticsName\n"+logistics);
+          localStorage.setItem('logistic_id', orderCreatePayload.logistics_id);
           // this.tempArrayGenerator(0)
           
           orderCreatePayload.retailerNames = JSON.stringify(plastics.names);
@@ -163,8 +180,8 @@ export class IndustriesRequestPage implements OnInit {
               }
 
               this.http.post(blockchainURLQuery, bcBodyQuotes, httpOptionsBC ).subscribe( bcresponse => {
-                this.qotesValue = JSON.parse(bcresponse['result']['payload'])
-                console.log(this.qotesValue);
+                this.quotesValue = JSON.parse(bcresponse['result']['payload'])
+                console.log(this.quotesValue);
                 console.log("pushed to second blockchain successfully\n");
 
                 argsArray = [orderCreatePayload.orderID, localStorage.getItem('username'), this.data['amount']];
@@ -254,7 +271,9 @@ export class IndustriesRequestPage implements OnInit {
       'industryID': localStorage.getItem('username'),
       'PLASTIC_NEEDED': this.data['amount']
     }
+    this.presentLoading();
     this.http.put(reqPlastic, payload, httpOptions).subscribe(result => {
+      
       console.log("updated industry table\n");
       this.presentToast();
       this.ecotMainFunction();

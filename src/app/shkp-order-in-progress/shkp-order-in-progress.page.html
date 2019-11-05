@@ -9,24 +9,44 @@
 
 <ion-content>
   <div *ngIf="userIDFlag == 'shkp' ">
-    <h2> order progress for shkp</h2>
+      <ion-card style="padding-left: 7%;">
+          <div *ngFor=" let detail of shopkeeperArray ">
+            <div class="parent" *ngIf = " arrayCheckFlag == 'shopkeepers' ">
+              <div class="elements">
+                <p>OrderID</p>
+                <p>Logistics </p>
+                <p>Requested Amount</p>
+                <p>Retailers</p>
+              </div>
+              <div class="elements">
+                <p>{{detail.orderid}}</p>
+                <p>{{detail.logisticsname}}</p>
+                <p>{{detail.requestedplastic}}</p>
+                <p>{{detail.retailername}}</p>
+              </div>
+              <ion-button size="small" fill="outline" routerLink="/industries-landing/shkp-logistics">Track
+              </ion-button>
+            </div>
+          </div>
+          
+        </ion-card>
   </div>
 
   <div *ngIf="userIDFlag == 'indus' ">
     <ion-card>
-      <div *ngFor=" let details of orderInProgress ">
-        <div class="parent" *ngIf = " details.orderstatus == 'inProgress' ">
+      <div *ngFor=" let detail of shopkeeperArray ">
+        <div class="parent" *ngIf = " arrayCheckFlag == 'industries' ">
           <div class="elements">
             <p>OrderID</p>
-            <p>Retailers</p>
             <p>Logistics </p>
             <p>Requested Amount</p>
+            <p>Retailers</p>
           </div>
           <div class="elements">
-            <p>{{details.orderid}}</p>
-            <p>{{details.retailername}}</p>
-            <p>{{details.logisticsname}}</p>
-            <p>{{details.requestedplastic}}</p>
+            <p>{{detail.orderid}}</p>
+            <p>{{detail.logisticsname}}</p>
+            <p>{{detail.requestedplastic}}</p>
+            <p>{{detail.retailername}}</p>
           </div>
           <ion-button size="small" fill="outline" routerLink="/industries-landing/shkp-logistics">Track
           </ion-button>

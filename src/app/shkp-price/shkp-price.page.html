@@ -1,12 +1,137 @@
 <ion-header>
-    <ion-toolbar color="primary">
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-      <ion-title>Price</ion-title>
-    </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Price</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div *ngIf=" userIDFlag == 'indus' ">
+    <div style="    display: flex;flex-direction: column;">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Details</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid class="nopadding">
+            <ion-row>
+              <ion-col col-md-6>
+                Total Price:
+              </ion-col>
+              <ion-col col-md-6>
+                <div *ngIf="res_data">{{res_data.price}}
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-md-6>
+                Total Amount:
+              </ion-col>
+              <ion-col col-md-6>
+                <div *ngIf="res_data">{{res_data.amt}}
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      <ion-button color="light" (click)="historyOnClickforIndustry()">History</ion-button>
+      <div *ngFor="let res of res_history_data" style="word-wrap: break-word;">
+          <ion-card>
+  
+            <ion-card-content>
+              <ion-grid class="nopadding">
+                <ion-row>
+                  <ion-col col-md-6>
+                    Price:
+                  </ion-col>
+                  <ion-col col-md-6>{{res.Value.price}}
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-md-6>
+                    Amount:
+                  </ion-col>
+                  <ion-col col-md-6>{{res.Value.amt}}
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-md-6>
+                    Timestamp:
+                  </ion-col>
+                  <ion-col col-md-6>{{res.Timestamp}}
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </div>
+    </div>
+  </div>
 
+  <div *ngIf=" userIDFlag == 'shkp' ">
+    <div style="    display: flex;flex-direction: column;">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Details</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-grid class="nopadding">
+            <ion-row>
+              <ion-col col-md-6>
+                Total Price:
+              </ion-col>
+              <ion-col col-md-6>
+                <div *ngIf="res_data">{{res_data.price}}
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-md-6>
+                Total Amount:
+              </ion-col>
+              <ion-col col-md-6>
+                <div *ngIf="res_data">{{res_data.amt}}
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      <ion-button color="light" (click)="historyOnClick()">History</ion-button>
+      <div *ngFor="let res of res_history_data" style="word-wrap: break-word;">
+        <ion-card>
+
+          <ion-card-content>
+            <ion-grid class="nopadding">
+              <ion-row>
+                <ion-col col-md-6>
+                  Price:
+                </ion-col>
+                <ion-col col-md-6>{{res.Value.price}}
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-md-6>
+                  Amount:
+                </ion-col>
+                <ion-col col-md-6>{{res.Value.amt}}
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-md-6>
+                  Timestamp:
+                </ion-col>
+                <ion-col col-md-6>{{res.Timestamp}}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
 </ion-content>
